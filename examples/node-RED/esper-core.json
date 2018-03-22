@@ -1,0 +1,290 @@
+[
+    {
+        "id": "821be6e4.93b498",
+        "type": "debug",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "x": 610,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ffc222b2.c4a4a",
+        "type": "mqtt in",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "topic": "esper/online",
+        "qos": "2",
+        "broker": "f667cfce.6729f",
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "821be6e4.93b498"
+            ]
+        ]
+    },
+    {
+        "id": "3d0f2e5.95cded2",
+        "type": "mqtt in",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "topic": "esper/offline",
+        "qos": "2",
+        "broker": "f667cfce.6729f",
+        "x": 410,
+        "y": 220,
+        "wires": [
+            [
+                "563c1f47.9acdf"
+            ]
+        ]
+    },
+    {
+        "id": "563c1f47.9acdf",
+        "type": "debug",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "x": 610,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "cc0e99f7.745e78",
+        "type": "mqtt out",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "topic": "esper/ota",
+        "qos": "1",
+        "retain": "false",
+        "broker": "f667cfce.6729f",
+        "x": 400,
+        "y": 340,
+        "wires": [],
+        "inputLabels": [
+            "Init HTML Update"
+        ]
+    },
+    {
+        "id": "2beeb92d.3e1a86",
+        "type": "inject",
+        "z": "ff8cb0bb.dd80f",
+        "name": "OTA from URL",
+        "topic": "esper/ota",
+        "payload": "http://192.168.3.102/ESPERdeviceH0.0.1.bin",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "cc0e99f7.745e78"
+            ]
+        ]
+    },
+    {
+        "id": "e98dcb2e.32c238",
+        "type": "mqtt in",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "topic": "esper/ohce/#",
+        "qos": "2",
+        "broker": "f667cfce.6729f",
+        "x": 630,
+        "y": 500,
+        "wires": [
+            [
+                "8ed8639a.8b5eb"
+            ]
+        ]
+    },
+    {
+        "id": "8ed8639a.8b5eb",
+        "type": "debug",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "x": 850,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "61e8fa7a.433e04",
+        "type": "mqtt out",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "topic": "esper/echo",
+        "qos": "1",
+        "retain": "false",
+        "broker": "f667cfce.6729f",
+        "x": 410,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "bdfa0eac.6a92d",
+        "type": "inject",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "topic": "esper/echo",
+        "payload": "ota",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 440,
+        "wires": [
+            [
+                "61e8fa7a.433e04"
+            ]
+        ]
+    },
+    {
+        "id": "758726cc.9ed948",
+        "type": "inject",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "topic": "esper/echo",
+        "payload": "wifi",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 480,
+        "wires": [
+            [
+                "61e8fa7a.433e04"
+            ]
+        ]
+    },
+    {
+        "id": "a0f37e23.1b5ba",
+        "type": "inject",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "topic": "esper/echo",
+        "payload": "mqtt",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 520,
+        "wires": [
+            [
+                "61e8fa7a.433e04"
+            ]
+        ]
+    },
+    {
+        "id": "44ffea74.75b634",
+        "type": "inject",
+        "z": "ff8cb0bb.dd80f",
+        "name": "",
+        "topic": "esper/echo",
+        "payload": "topics",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 560,
+        "wires": [
+            [
+                "61e8fa7a.433e04"
+            ]
+        ]
+    },
+    {
+        "id": "c698756d.ef6058",
+        "type": "comment",
+        "z": "ff8cb0bb.dd80f",
+        "name": "Want to know more about MQTT?",
+        "info": "https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices",
+        "x": 510,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "c8e2e365.05183",
+        "type": "inject",
+        "z": "ff8cb0bb.dd80f",
+        "name": "wifi by MAC",
+        "topic": "esper/echo/A020A6027ED8",
+        "payload": "wifi",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 210,
+        "y": 600,
+        "wires": [
+            [
+                "61e8fa7a.433e04"
+            ]
+        ]
+    },
+    {
+        "id": "44c7f2d.58f4a0c",
+        "type": "inject",
+        "z": "ff8cb0bb.dd80f",
+        "name": "OTA from URL by MAC",
+        "topic": "esper/ota/A020A6027ED8",
+        "payload": "http://192.168.3.102/ESPERdeviceH0.0.1.bin",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "cc0e99f7.745e78"
+            ]
+        ]
+    },
+    {
+        "id": "f667cfce.6729f",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    }
+]

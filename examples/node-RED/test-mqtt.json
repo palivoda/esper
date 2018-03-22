@@ -1,0 +1,84 @@
+[
+    {
+        "id": "a8963968.6ed588",
+        "type": "mqtt in",
+        "z": "eef097c3.188818",
+        "name": "hello/world",
+        "topic": "hello/world",
+        "qos": "2",
+        "broker": "f667cfce.6729f",
+        "x": 840,
+        "y": 80,
+        "wires": [
+            [
+                "c08dbf10.ae36f"
+            ]
+        ]
+    },
+    {
+        "id": "c08dbf10.ae36f",
+        "type": "debug",
+        "z": "eef097c3.188818",
+        "name": "",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "x": 1090,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "5b0a5293.8a8fec",
+        "type": "mqtt out",
+        "z": "eef097c3.188818",
+        "name": "",
+        "topic": "hello/world",
+        "qos": "",
+        "retain": "",
+        "broker": "f667cfce.6729f",
+        "x": 590,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a42a4a9c.0dbd78",
+        "type": "inject",
+        "z": "eef097c3.188818",
+        "name": "",
+        "topic": "hello/world",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "15",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 280,
+        "y": 80,
+        "wires": [
+            [
+                "5b0a5293.8a8fec"
+            ]
+        ]
+    },
+    {
+        "id": "f667cfce.6729f",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "localhost",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    }
+]
