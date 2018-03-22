@@ -1,3 +1,6 @@
-[submodule "lib/pubsubclient"]
-	path = lib/pubsubclient
+[submodule "lib/duktape.git"]
+	path = lib/duktape.git
+	url = https://github.com/svaarala/duktape.git
+[submodule "lib/PubSubClient.git"]
+	path = lib/PubSubClient.git
 	url = https://github.com/knolleary/pubsubclient.git
