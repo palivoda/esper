@@ -2,11 +2,13 @@
  * General options
  */
 
-#define BOARD_FIRMWARE_VERSION        "F0.0.1"
-#define BOARD_HARDWARE_VERSION        "H0.0.1"
+#ifndef BOARD_FIRMWARE_VERSION                              //Redefine this values in your sketch
 
-#define BOARD_NAME                    "ESPER device"        // Name of your product. Should match App Export request info.
-#define BOARD_VENDOR                  "Company Name"        // Name of your company. Should match App Export request info.
+#define BOARD_FIRMWARE_VERSION        "F0.0.1"              //Version of Esper library.
+#define BOARD_HARDWARE_VERSION        "H0.0.1"              //Version of board. Validated during OTA.
+
+#define BOARD_NAME                    "ESPER device"        // Name of your product. Validated during OTA.
+#define BOARD_VENDOR                  "Company Name"        // Name of your company.
 
 #define PRODUCT_WIFI_SSID             "ESPER device"        // Name of the device, to be displayed during configuration. Should match export request info.
 #define BOARD_CONFIG_AP_URL           "esper.iot"           // Config page will be available in a browser at 'http://our-product.cc/'
@@ -17,6 +19,8 @@
 
 #define ECHO_TOPIC                    "esper/echo"          // MQTT topic to collect all online devices status
 #define OHCE_TOPIC                    "esper/ohce"          // MQTT topic to collect all online devices status
+
+#endif
 
 /*
  * Board configuration (see examples below).
