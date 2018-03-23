@@ -2,14 +2,14 @@
 #define ESPER_DEBUG                 // Comment this out to disable debug prints
 //#define ESPER_PRINT Serial        // Debug output can be redefined
 
-#include <Esper.h>
+#include <Esper.hpp>
 
 void setup() {
 
   ESPER_DEBUG_SETUP(74880); //ESP8266 baud rate
 
   //Init EEPROM
-  Esper.begin(2); //2 seconds for tic tac
+  Esper.begin(); //2 seconds for tic tac
 
 }
 
@@ -31,11 +31,11 @@ void disconnecting() {
 void tictac()
 {
 
-    String message = "Lets go party! There are " + millis() + " people!";
+    String message = String("Lets go party! There are ") + millis() + " people!";
 
     E_DEBUG("Sending %s ", message.c_str());
 
-    mqtt.publish("hello/world", message);
+    mqtt.publish("hello/world", message.c_str());
 
     E_DEBUG_ASSERT(millis() > 1000);
 
