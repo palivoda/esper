@@ -20,6 +20,8 @@
 #define ECHO_TOPIC                    "esper/echo"          // MQTT topic to collect all online devices status
 #define OHCE_TOPIC                    "esper/ohce"          // MQTT topic to collect all online devices status
 
+#define JS_TOPIC                      "esper/js"            // MQTT topic to execute JavaScript on ESPER device
+
 #endif
 
 /*

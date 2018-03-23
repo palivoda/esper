@@ -5,6 +5,7 @@ void disconnecting();
 
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
+
 #include "utils\Debug.hpp"
 #include "Settings.hpp"
 #include "EsperState.hpp"
@@ -13,6 +14,7 @@ void disconnecting();
 #include "hardware\ResetButton.hpp"
 #include "hardware\Indicator.hpp"
 #include "EsperOTA.hpp"
+#include "EsperScript.hpp"
 #include "EsperMqttClient.hpp"
 #include "ConfigMode.hpp"
 

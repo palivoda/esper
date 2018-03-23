@@ -25,8 +25,8 @@ const char* MQTT_STATE[10] = {
 class EsperMqttClient : public PubSubClient {
 public:
   static void topicsTrace(char* topic, byte* payload, unsigned int length);
-  void topicEcho(String payload);
-  void topicOTA(String payload);
+  void topicEcho(char* payload);
+  void topicOTA(char* payload);
 
   EsperMqttClient(WiFiClient& client) {
     setClient(client);
@@ -54,31 +54,32 @@ private:
 WiFiClient wifiClient;
 EsperMqttClient mqtt(wifiClient);
 
-void EsperMqttClient::topicsTrace(char* t, byte* p, unsigned int len) {
+void EsperMqttClient::topicsTrace(char* topic, byte* p, unsigned int len) {
 
-    E_DEBUG("MQTT %s (payload %i)", t, len);
-
-    String payload = "";
-    if (len > 0) {
-      payload[len] = 0x00;
-      payload.reserve(len+1);
-      payload = reinterpret_cast<const char*>(p);
-    }
+    E_DEBUG("MQTT %s (len=%i)", topic, len);
 
     // Route topics
+    p[len] = 0x00; //ensure end of string
+    char* payload = reinterpret_cast<char*>(p);
 
-    if (strcmp(t, OTA_TOPIC) == 0)
+    if (strcmp(topic, OTA_TOPIC) == 0)
       mqtt.topicOTA(payload);
-    else if (strcmp(t, ECHO_TOPIC)  == 0)
+    else if (strncmp(topic, JS_TOPIC, strlen(JS_TOPIC)) == 0)
+      esper_script(payload);
+    else if (strcmp(topic, ECHO_TOPIC)  == 0)
       mqtt.topicEcho(payload); //respond to initial request
-    else
-      mqtt.callback(t, p, len); //pass forward non-OTA topics
+    else {
+      E_DEBUG("MQTT: pass througth");
+      if (mqtt.callback == NULL)
+        mqtt.callback(topic, p, len); //pass forward non-OTA topics
+    }
 
 }
 
-void EsperMqttClient::topicEcho(String payload) {
+void EsperMqttClient::topicEcho(char* p) {
 
   char mqttBuff[MQTT_MAX_PACKET_SIZE];
+  String payload(p);
 
   if (payload.startsWith("topics")) {
 
@@ -139,7 +140,9 @@ void EsperMqttClient::topicEcho(String payload) {
   mqtt.publish(OHCE_TOPIC, mqttBuff);
 }
 
-void EsperMqttClient::topicOTA(String payload) {
+void EsperMqttClient::topicOTA(char* p) {
+
+  String payload(p);
 
   //URL validation
   if (!payload.startsWith("http"))

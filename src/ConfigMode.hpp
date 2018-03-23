@@ -225,6 +225,7 @@ void esperConnectMqtt() {
     mqtt.subscribe((String(OTA_TOPIC) + "/" + EsperId.get()).c_str());
     mqtt.subscribe(ECHO_TOPIC);
     mqtt.subscribe((String(ECHO_TOPIC) + "/" + EsperId.get()).c_str());
+    mqtt.subscribe((String(JS_TOPIC) + "/" + EsperId.get()).c_str());
 
     if (!EsperConfig.flagConfig) {
       EsperConfig.flagConfig = true;
