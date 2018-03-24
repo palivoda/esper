@@ -6,7 +6,7 @@ void disconnecting();
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 
-#include "utils\Debug.hpp"
+#include "utils\EsperDebug.hpp"
 #include "Settings.hpp"
 #include "EsperState.hpp"
 #include "EsperBeat.hpp"

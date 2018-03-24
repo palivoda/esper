@@ -3,9 +3,14 @@
 
 #ifdef ESPER_DEBUG
     #include <stdio.h>
+    #include <gdbstub.h>
 
     #ifndef ESPER_PRINT
+      #ifdef DEBUG_ESP_PORT
+        #define ESPER_PRINT DEBUG_ESP_PORT
+      #else
         #define ESPER_PRINT Serial
+      #endif
     #endif
 
     void logtime() {
