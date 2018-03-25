@@ -39,6 +39,9 @@ ESPER provides you 3 new callbacks that you can fill in with operation code:
 | disconnect() | Triggered if WiFi, MQTT connection lost or ESPER OTA is initiated and device is going to reboot. |
 | tictac() | Timer that is actived only when device is online and ready. Intended to sensor readigns. |
 
+# Development environment 
+Git clone in to directory and open with [Platformio for Atom]. Check [platformio.ini] file for setting up your board. Connect ESP to USB and Run build. For ESP-01 it takes 10 seconds to start AP. Connect to 'ESPER device' AP and open URL "esper.iot" to setup WiFi and MQTT settings. After save device will reboot and send esper/init MQTT mesage. 
+
 # Setting up the environment
 As ESPER communicates via MQTT here is propsed software stack that you can get to kicstart your first DIY IoT project, like smart home:
 * Orange PI Zero board with 8+ Gig SD card
@@ -87,3 +90,5 @@ MIT
 [esper-core.json]: /examples/node-RED/esper-core.json
 
 [NginX]: https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-debian-8
+
+[Platformio for Atom]: http://docs.platformio.org/en/latest/ide/atom.html#installation
