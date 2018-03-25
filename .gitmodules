@@ -1,9 +1,6 @@
-[submodule "lib/duktape.git"]
-	path = lib/duktape.git
-	url = https://github.com/svaarala/duktape.git
 [submodule "lib/PubSubClient.git"]
 	path = lib/PubSubClient.git
 	url = https://github.com/knolleary/pubsubclient.git
-[submodule "lib/duktape-releases.git"]
-	path = lib/duktape-releases.git
-	url = https://github.com/svaarala/duktape-releases.git
+[submodule "lib/Unity.git"]
+	path = lib/Unity.git
+	url = https://github.com/ThrowTheSwitch/Unity.git
