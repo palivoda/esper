@@ -41,17 +41,17 @@ ESPER provides you 3 new callbacks that you can fill in with operation code:
 # Setting up the environment
 As ESPER communicates via MQTT here is propsed software stack that you can get to kicstart your first DIY IoT project, like smart home:
 * Orange PI Zero board with 8+ Gig SD card
-* 8+ GB SD Card with (TODO: share SD image):
-  * Install Armbian
-    * Dont forget to setup WiFi ;)
+* 8+ GB SD Card with (TODO: ready SD card image):
+  * Install [Armbian]
+    * Dont forget to [setup WiFi] ;)
   * Install [Mosquitto] MQTT broker (port 1880)
   * Install [Node-RED] (http://192.168.x.x:1880/)
     * Install [Node-RED Dashboard] extension and access it on http://192.168.x.x:1880/ui/
-    * Import ESPER Node-RED test flow [test/node-red.json]
-  * Install Nginx web server for firmware image sharing
-    * SSH clinet to drop new firmware files to /var/www/html
+    * Import ESPER Node-RED test flow [test-mqtt.json] if ok then test connection to ESP with [esper-core.json]
+  * (optional) To provide OTA images you may want to install [NginX] web server
+    * then you will may need SSH clinet with SFTP to upload new firmware files into /var/www/html
 Steps:
-* Burn the SD card image and Boot OrangePi Zero
+* Burn the SD card image  and Boot OrangePi Zero
 * Burn your ESP8266 firmware with DHT11 example, reboot, connect to "ESPER device" nework and configure it
 * Now you should be able to see humidity and temperature charts.
 
@@ -70,3 +70,19 @@ MIT
 [ESP-01S]: [https://www.aliexpress.com/item/WIFI-module-ESP-01-ESP8266-8Mb-flash-memory/32733744011.html?spm=a2g0s.9042311.0.0.da9DRM&af=1696703&cv=25765197&cn=41p5y7w4do70a0xrzwt58ht5vxh30a4p&dp=v5_41p5y7w4do70a0xrzwt58ht5vxh30a4p&mall_affr=pr1&aff_platform=default&cpt=1521649012473&sk=jqf2Rf6&aff_trace_key=bed5cdc34a724c9d858342cacac3e055-1521649012473-09252-jqf2Rf6&terminal_id=897c247d304f494e95802c610d1d8751]
 
 [Wemos D1 Mini]: https://www.aliexpress.com/item/D1-mini-Mini-NodeMcu-4M-bytes-Lua-WIFI-Internet-of-Things-development-board-based-ESP8266-by/32662942091.html?spm=a2g0s.9042311.0.0.bHIaLG&af=1696703&cv=25765197&cn=41p5y89ttwv6le8xkuvp5kn7tmz7c7gs&dp=v5_41p5y89ttwv6le8xkuvp5kn7tmz7c7gs&mall_affr=pr1&aff_platform=default&cpt=1521649505722&sk=jqf2Rf6&aff_trace_key=a9ea496c48aa41ac975edb51d96e5a8a-1521649505722-02062-jqf2Rf6&terminal_id=897c247d304f494e95802c610d1d8751
+
+[Armbian]: https://docs.armbian.com/User-Guide_Getting-Started/
+
+[setup WiFi]: https://cloudvedas.com/how-to-use-nmtui-and-nmcli-tool-to-configure-network-in-redhat-linux/
+
+[Mosquitto]: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-the-mosquitto-mqtt-messaging-broker-on-debian-8
+
+[Node-RED]: https://diyprojects.io/install-node-red-orange-pi-running-armbian/#.Wrfo-2puaUm
+
+[Node-RED Dashboard]: https://flows.nodered.org/node/node-red-dashboard
+
+[test-mqtt.json]: /examples/node-RED/test-mqtt.json
+
+[esper-core.json]: /examples/node-RED/esper-core.json
+
+[NginX]: https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-debian-8
