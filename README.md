@@ -32,8 +32,9 @@ Esper.begin();                      //init EEPROM
 Esper.run();
 ```
 ESPER provides you 3 new callbacks that you can fill in with operation code:
+
 | Function | Description |
-| ------ | ------ |
+| :---: | --- |
 | connected() | Triggered by ESPER when device setup is completed - it's connected to WiFi and MQTT and connection parametrs saved to EEPROM. MQTT init message sent. |
 | disconnect() | Triggered if WiFi, MQTT connection lost or ESPER OTA is initiated and device is going to reboot. |
 | tictac() | Timer that is actived only when device is online and ready. Intended to sensor readigns. |
