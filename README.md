@@ -1,18 +1,15 @@
 # What is ESPER?
-ESPER library takes care about your ESP8266 module setup and configuration. You focus on reading sensors and triggering relays and offcourse rapid logic and UI development in your Node-RED instance. So, ESPER take care of:
+ESPER library takes care about your ESP8266 module setup and configuration. You focus on reading sensors, triggering relays and offcourse logic and UI setup in your Node-RED instance. 
+
+Here is full list of features done so far:
 * EEPROM configuration storage
 * Setup WifI connection on deployment (SSID, password)
 * Setup MQTT connection on deployment (host, port, user, password, retain)
 * Configure MQTT topics for data esper/feed, as well for esper/init and esper/will
 * Update firmware from URL (triggered by MQTT esper/ota message)
-* Read device config with MQTT (esper/echo message)
+* Read device config and status via MQTT message (esper/echo message)
 * Build in Timer trigger sensor readings when the board is online and ready (tictac)
 * Debug macros with printf like formatting
-
-Roadmap:
-* Read hardware pins via MQTT API mesages
-* Write to hardware pins via MQTT API message
-* EEPROM software encription
 
 All this you get by adding just a few lines in to your code template:
 
@@ -40,12 +37,16 @@ ESPER provides you 3 new callbacks that you can fill in with operation code:
 | tictac() | Timer that is actived only when device is online and ready. Intended to sensor readigns. |
 
 # Development environment 
-Git clone in to directory and open with [Platformio for Atom]. Check [platformio.ini] file for setting up your board. Connect ESP to USB and Run build. For ESP-01 it takes 10 seconds to start AP. Connect to 'ESPER device' AP and open URL "esper.iot" to setup WiFi and MQTT settings. After save device will reboot and send esper/init MQTT mesage. 
+* Git clone in to directory and open with [Platformio for Atom]. 
+* Check [platformio.ini] file for setting up your board. 
+* Connect ESP to USB and Run build. For ESP-01 it takes 10 seconds to start AP. 
+* Connect to 'ESPER device' AP and open URL "esper.iot" to setup WiFi and MQTT settings. 
+  * After save device will reboot and send esper/init MQTT mesage. 
 
-# Setting up the environment
+# Setting up MQTT environment
 As ESPER communicates via MQTT here is propsed software stack that you can get to kicstart your first DIY IoT project, like smart home:
 * Orange PI Zero board with 8+ Gig SD card
-* 8+ GB SD Card with (TODO: ready SD card image):
+* 8+ GB SD Card with (TODO: ready to burn SD card image):
   * Install [Armbian]
     * Dont forget to [setup WiFi] ;)
   * Install [Mosquitto] MQTT broker (port 1880)
@@ -63,6 +64,23 @@ Steps:
 By this time EPSER was delpoyed and working on
 * [ESP-01S]
 * [Wemos D1 Mini] and similar ESP8266MOD based PCBs
+
+# Roadmap
+* Kickstart application template
+* MQTT Esper command
+  * Define command implementation interface (abstract class with predefined call context)
+  * Define command MQTT mesage format (format of string)
+  * Create kick-start command implementation template
+* Implement basic MQTT commands to manipulate with hardware pins (read, write, PWM)
+  * Command to read pin with timer
+  * Command to write pin, PWM on pin
+  * Command to set Pin interrupt notification
+* MQTT Esper process
+  * Define command interface 
+* Implement more internal process type of commands
+  * Process to start trigger level logic
+  * Process to start PID regilator  
+* EEPROM encription
 
 License
 ----
