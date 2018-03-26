@@ -1,64 +1,53 @@
 # What is ESPER?
-ESPER library takes care about your ESP8266 module setup and configuration. You focus on reading sensors and triggering relays and offcourse rapid logic and UI development in your Node-RED instance. So, ESPER take care of:
+ESPER library takes care about your ESP microcontroller setup and configuration. You focus on reading sensors, triggering relays and off course logic and UI setup in your Node-RED instance.
+
+Here is full list of features done so far:
+* Arduino for ESP8266 based (all your sketches are portable)
 * EEPROM configuration storage
-* Setup WifI connection on deployment (SSID, password)
+* Setup Wi-Fi connection on deployment (SSID, password)
 * Setup MQTT connection on deployment (host, port, user, password, retain)
 * Configure MQTT topics for data esper/feed, as well for esper/init and esper/will
 * Update firmware from URL (triggered by MQTT esper/ota message)
-* Read device config with MQTT (esper/echo message)
+* Read device configuration and status via MQTT message (esper/echo message)
 * Build in Timer trigger sensor readings when the board is online and ready (tictac)
 * Debug macros with printf like formatting
 
-Roadmap:
-* Read hardware pins via MQTT API mesages
-* Write to hardware pins via MQTT API message
-* EEPROM software encription
+All this you get by starting your project with [Esper Application]!
 
-All this you get by adding just a few lines in to your code template:
+## Core Esper development:
+* Git clone in to directory.
+* Open directory as project in Paltformio
+* In [platformio.ini] file set up your board and comment out ESPER_BULD_LIB parameter to include main.cpp content in to the build.
+* You should be able to build Esper core and upload it in to the ESP chip.
 
-* Select the board and include h file of the library:
-```sh
-#define USE_WEMOS_D1_MINI_BOARD     //select board
-#define ESPER_DEBUG                 //enable Debug
-#include "Esper.hpp"                //main H file
-```
-* Then during setup call:
-```sh
-ESPER_DEBUG_SETUP(74880);           //default ESP baud rate
-Esper.begin();                      //init EEPROM
-```
-* During loop you need to call only
-```sh
-Esper.run();
-```
-ESPER provides you 3 new callbacks that you can fill in with operation code:
-| Function | Description |
-| ------ | ------ |
-| connected() | Triggered by ESPER when device setup is completed - it's connected to WiFi and MQTT and connection parametrs saved to EEPROM. MQTT init message sent. |
-| disconnect() | Triggered if WiFi, MQTT connection lost or ESPER OTA is initiated and device is going to reboot. |
-| tictac() | Timer that is actived only when device is online and ready. Intended to sensor readigns. |
-
-# Setting up the environment
-As ESPER communicates via MQTT here is propsed software stack that you can get to kicstart your first DIY IoT project, like smart home:
-* Orange PI Zero board with 8+ Gig SD card
-* 8+ GB SD Card with (TODO: share SD image):
-  * Install Armbian
-    * Dont forget to setup WiFi ;)
-  * Install [Mosquitto] MQTT broker (port 1880)
-  * Install [Node-RED] (http://192.168.x.x:1880/)
-    * Install [Node-RED Dashboard] extension and access it on http://192.168.x.x:1880/ui/
-    * Import ESPER Node-RED test flow [test/node-red.json]
-  * Install Nginx web server for firmware image sharing
-    * SSH clinet to drop new firmware files to /var/www/html
-Steps:
-* Burn the SD card image and Boot OrangePi Zero
-* Burn your ESP8266 firmware with DHT11 example, reboot, connect to "ESPER device" nework and configure it
-* Now you should be able to see humidity and temperature charts.
+## Extending Esper with new commands:
+To be announced when functionality will be implemented.
 
 # Supported Boards
-By this time EPSER was delpoyed and working on
+By this time EPSER was deployed and working on
 * [ESP-01S]
 * [Wemos D1 Mini] and similar ESP8266MOD based PCBs
+
+# Roadmap
+
+* Kick start application template
+* MQTT Esper command
+  * Define command implementation interface (abstract class with predefined call context)
+  * Define command MQTT message format (format of string)
+  * Create kick-start command implementation template
+* Implement basic MQTT commands to manipulate with hardware pins (read, write, PWM)
+  * Command to read pin with timer
+  * Command to write pin, PWM on pin
+  * Command to set Pin interrupt notification
+* Implement input and output value mappings
+  * Basic points approximation mapper
+  * Math function mapping
+* MQTT Esper process
+  * Define command interface
+* Implement more internal process type of commands
+  * Process to start trigger level logic
+  * Process to start PID regulator  
+* EEPROM encryption
 
 License
 ----
@@ -66,6 +55,8 @@ License
 MIT
 
 [//]: #
+
+[Esper Application]: https://github.com/palivoda/esper-app
 
 [ESP-01S]: [https://www.aliexpress.com/item/WIFI-module-ESP-01-ESP8266-8Mb-flash-memory/32733744011.html?spm=a2g0s.9042311.0.0.da9DRM&af=1696703&cv=25765197&cn=41p5y7w4do70a0xrzwt58ht5vxh30a4p&dp=v5_41p5y7w4do70a0xrzwt58ht5vxh30a4p&mall_affr=pr1&aff_platform=default&cpt=1521649012473&sk=jqf2Rf6&aff_trace_key=bed5cdc34a724c9d858342cacac3e055-1521649012473-09252-jqf2Rf6&terminal_id=897c247d304f494e95802c610d1d8751]
 
