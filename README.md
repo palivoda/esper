@@ -37,11 +37,21 @@ ESPER provides you 3 new callbacks that you can fill in with operation code:
 | tictac() | Timer that is actived only when device is online and ready. Intended to sensor readigns. |
 
 # Development environment 
-* Git clone in to directory and open with [Platformio for Atom]. 
-* Check [platformio.ini] file for setting up your board. 
-* Connect ESP to USB and Run build. For ESP-01 it takes 10 seconds to start AP. 
+* Source code projects are setup in community edition [Platformio for Atom]. All steps below assume this environment folders structure. 
+## Creating application with Esper:
+* Git clone in to directory TODO:[Esper application template]
+* Open [platformio.ini] file and setup your board configuration. 
+* Connect your ESP chip to USB port and Run build. For ESP-01 it takes 10 seconds to start AP. 
 * Connect to 'ESPER device' AP and open URL "esper.iot" to setup WiFi and MQTT settings. 
-  * After save device will reboot and send esper/init MQTT mesage. 
+* After save device will reboot and send esper/init MQTT mesage. 
+## Core Esper development:
+* Git clone in to directory. 
+* Open directory as project in Paltformio
+* add main.cpp in to src directory.
+* Check [platformio.ini] file for setting up your board. 
+* You should be able to build Esper core now.
+## Extending Esper with new commands:
+To be anonounced when functionality will be implemented.
 
 # Setting up MQTT environment
 As ESPER communicates via MQTT here is propsed software stack that you can get to kicstart your first DIY IoT project, like smart home:
