@@ -37,9 +37,9 @@ ESPER provides you 3 new callbacks that you can fill in with operation code:
 | tictac() | Timer that is actived only when device is online and ready. Intended to sensor readigns. |
 
 # Development environment 
-* Source code projects are setup in community edition [Platformio for Atom]. All steps below assume this environment folders structure. 
+* Source code projects are setup in [Platformio for Atom] community edition. All steps below assume this environment folders structure. 
 ## Creating application with Esper:
-* Git clone in to directory TODO:[Esper application template]
+* Git clone in to local directory TODO:[Esper application template]
 * Open [platformio.ini] file and setup your board configuration. 
 * Connect your ESP chip to USB port and Run build. For ESP-01 it takes 10 seconds to start AP. 
 * Connect to 'ESPER device' AP and open URL "esper.iot" to setup WiFi and MQTT settings. 
@@ -66,7 +66,7 @@ As ESPER communicates via MQTT here is propsed software stack that you can get t
   * (optional) To provide OTA images you may want to install [NginX] web server
     * then you will may need SSH clinet with SFTP to upload new firmware files into /var/www/html
 Steps:
-* Burn the SD card image  and Boot OrangePi Zero
+* Burn the SD card image and Boot OrangePi Zero
 * Burn your ESP8266 firmware with DHT11 example, reboot, connect to "ESPER device" nework and configure it
 * Now you should be able to see humidity and temperature charts.
 
