@@ -1,4 +1,4 @@
-#ifndef ESPER_LIB_BULD
+#ifndef ESPER_LIB_BUILD
 
 #define USE_WEMOS_D1_MINI_BOARD     // Uncomment the board you are using
 #define ESPER_DEBUG                 // Comment this out to disable debug prints
@@ -7,6 +7,7 @@
 
 void setup() {
   ESPER_DEBUG_SETUP(74880);
+  //esperResetConfig();
   Esper.begin();
 }
 
