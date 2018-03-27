@@ -45,11 +45,15 @@ void esperConfigMode()
   WiFi.mode(WIFI_OFF);
   delay(100);
   WiFi.mode(WIFI_AP);
+
+  String ssid = PRODUCT_WIFI_SSID;
+  ssid.replace("{mac}", WiFi.macAddress());
+  E_DEBUG("AP SSID: %s", ssid.c_str());
+
   WiFi.softAPConfig(WIFI_AP_IP, WIFI_AP_IP, WIFI_AP_Subnet);
-  WiFi.softAP(PRODUCT_WIFI_SSID);
+  WiFi.softAP(ssid.c_str());
   delay(500);
   IPAddress myIP = WiFi.softAPIP();
-  E_DEBUG("AP SSID: %s", PRODUCT_WIFI_SSID);
   E_DEBUG("AP IP: %i.%i.%i.%i", myIP[0], myIP[1], myIP[2], myIP[3]);
 
   if (myIP == (uint32_t)0) {

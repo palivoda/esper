@@ -34,8 +34,8 @@ const ConfigStore configDefault = {
   BOARD_FIRMWARE_VERSION,
   0, 0, 0,
 
-  "fazenda",
-  "fazenda123",
+  "wifi",
+  "pass",
 
   "192.168.3.102", 1883,
   "messanger",
@@ -76,19 +76,20 @@ bool config_save()
   return true;
 }
 
-bool config_init()
-{
-  EEPROM.begin(sizeof(ErrorsStore)+sizeof(ConfigStore));
-  config_load();
-  return true;
-}
-
 void esperResetConfig()
 {
   E_DEBUG("Resetting configuration!");
   EsperConfig = configDefault;
   config_save();
   EsperState::set(MODE_WAIT_CONFIG);
+}
+
+bool config_init()
+{
+  EEPROM.begin(sizeof(ErrorsStore)+sizeof(ConfigStore));
+  esperResetConfig(); //always reset config on start
+  config_load();
+  return true;
 }
 
 void flashError(const char* msg) {

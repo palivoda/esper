@@ -10,7 +10,7 @@
 #define BOARD_NAME                    "ESPER device"        // Name of your product. Validated during OTA.
 #define BOARD_VENDOR                  "Company Name"        // Name of your company.
 
-#define PRODUCT_WIFI_SSID             "ESPER device"        // Name of the device, to be displayed during configuration. Should match export request info.
+#define PRODUCT_WIFI_SSID             "Esper {mac}"         // Name of the device, to be displayed during configuration. Should match export request info.
 #define BOARD_CONFIG_AP_URL           "esper.iot"           // Config page will be available in a browser at 'http://our-product.cc/'
 
 #define OTA_TOPIC                     "esper/ota"           // MQTT topic to trigger OTA updte on compatible devices

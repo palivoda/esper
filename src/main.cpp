@@ -7,7 +7,6 @@
 
 void setup() {
   ESPER_DEBUG_SETUP(74880);
-  //esperResetConfig();
   Esper.begin();
 }
 
