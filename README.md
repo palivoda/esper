@@ -1,5 +1,5 @@
 # What is ESPER?
-ESPER library takes care about your ESP microcontroller setup and configuration. You focus on reading sensors, triggering relays and off course logic and UI setup in your Node-RED instance.
+ESPER library takes care about your ESP microcontroller setup and configuration. You focus on reading sensors, triggering relays and of course logic and UI setup in your Node-RED instance.
 
 Here is full list of features done so far:
 * Arduino for ESP8266 based (all your sketches are portable)
